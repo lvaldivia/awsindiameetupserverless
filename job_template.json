@@ -124,7 +124,7 @@
           "DestinationSettings": {
             "S3Settings": {
               "AccessControl": {
-                "CannedAcl": "PUBLIC_READ"
+                "CannedAcl": "BUCKET_OWNER_FULL_CONTROL"
               }
             }
           }
