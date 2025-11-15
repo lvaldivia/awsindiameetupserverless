@@ -1,0 +1,145 @@
+{
+  "TimecodeConfig": { "Source": "ZEROBASED" },
+  "OutputGroups": [
+    {
+      "CustomName": "HLS",
+      "Name": "Apple HLS",
+      "Outputs": [
+        {
+          "ContainerSettings": { "Container": "M3U8" },
+          "VideoDescription": {
+            "Width": 1920,
+            "Height": 1080,
+            "CodecSettings": {
+              "Codec": "H_264",
+              "H264Settings": {
+                "MaxBitrate": 10000000,
+                "RateControlMode": "QVBR",
+                "SceneChangeDetect": "DISABLED",
+                "QualityTuningLevel": "SINGLE_PASS",
+                "GopSize": 2,
+                "GopSizeUnits": "SECONDS",
+                "GopClosedCadence": 1,
+                "GopBReference": "DISABLED"
+              }
+            }
+          },
+          "AudioDescriptions": [
+            {
+              "AudioSourceName": "Audio Selector 1",
+              "CodecSettings": {
+                "Codec": "AAC",
+                "AacSettings": {
+                  "Bitrate": 128000,
+                  "CodingMode": "CODING_MODE_2_0",
+                  "SampleRate": 48000
+                }
+              }
+            }
+          ],
+          "OutputSettings": { "HlsSettings": {} },
+          "NameModifier": "_1080"
+        },
+        {
+          "ContainerSettings": { "Container": "M3U8" },
+          "VideoDescription": {
+            "Width": 1280,
+            "Height": 720,
+            "CodecSettings": {
+              "Codec": "H_264",
+              "H264Settings": {
+                "MaxBitrate": 5000000,
+                "RateControlMode": "QVBR",
+                "SceneChangeDetect": "DISABLED",
+                "QualityTuningLevel": "SINGLE_PASS",
+                "GopSize": 2,
+                "GopSizeUnits": "SECONDS",
+                "GopClosedCadence": 1,
+                "GopBReference": "DISABLED"
+              }
+            }
+          },
+          "AudioDescriptions": [
+            {
+              "AudioSourceName": "Audio Selector 1",
+              "CodecSettings": {
+                "Codec": "AAC",
+                "AacSettings": {
+                  "Bitrate": 128000,
+                  "CodingMode": "CODING_MODE_2_0",
+                  "SampleRate": 48000
+                }
+              }
+            }
+          ],
+          "OutputSettings": { "HlsSettings": {} },
+          "NameModifier": "_720"
+        },
+        {
+          "ContainerSettings": { "Container": "M3U8" },
+          "VideoDescription": {
+            "Width": 854,
+            "Height": 480,
+            "CodecSettings": {
+              "Codec": "H_264",
+              "H264Settings": {
+                "MaxBitrate": 2500000,
+                "RateControlMode": "QVBR",
+                "SceneChangeDetect": "DISABLED",
+                "QualityTuningLevel": "SINGLE_PASS",
+                "GopSize": 2,
+                "GopSizeUnits": "SECONDS",
+                "GopClosedCadence": 1,
+                "GopBReference": "DISABLED"
+              }
+            }
+          },
+          "AudioDescriptions": [
+            {
+              "AudioSourceName": "Audio Selector 1",
+              "CodecSettings": {
+                "Codec": "AAC",
+                "AacSettings": {
+                  "Bitrate": 128000,
+                  "CodingMode": "CODING_MODE_2_0",
+                  "SampleRate": 48000
+                }
+              }
+            }
+          ],
+          "OutputSettings": { "HlsSettings": {} },
+          "NameModifier": "_480"
+        }
+      ],
+      "OutputGroupSettings": {
+        "Type": "HLS_GROUP_SETTINGS",
+        "HlsGroupSettings": {
+          "SegmentLength": 2,
+          "MinSegmentLength": 2,
+          "MinFinalSegmentLength": 2,
+          "ProgramDateTime": "INCLUDE",
+          "ProgramDateTimePeriod": 2,
+          "Destination": "s3://masuno/Vales/",
+          "ManifestDurationFormat": "FLOATING_POINT",
+          "DestinationSettings": {
+            "S3Settings": {
+              "AccessControl": {
+                "CannedAcl": "PUBLIC_READ"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "Inputs": [
+    {
+      "AudioSelectors": {
+        "Audio Selector 1": { "DefaultSelection": "DEFAULT" }
+      },
+      "VideoSelector": {},
+      "TimecodeSource": "ZEROBASED",
+      "FileInput": "s3://your-input-bucket/your-input-file.mp4"
+    }
+  ]
+}
