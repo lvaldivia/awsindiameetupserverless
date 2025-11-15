@@ -4,6 +4,18 @@ import urllib.parse
 import uuid
 import os
 
+# IAM role used by AWS MediaConvert to read input files from S3
+# and write transcoded output files to the destination S3 bucket.
+MEDIACONVERT_ROLE = os.environ["MEDIACONVERT_ROLE"]
+
+# S3 bucket where the MediaConvert job template (JSON settings) is stored.
+# This template defines the full MediaConvert job configuration.
+TEMPLATE_BUCKET = os.environ["TEMPLATE_BUCKET"]
+
+# S3 object key pointing to the MediaConvert job template JSON file.
+# The Lambda reads this template and injects dynamic values (input/output paths).
+TEMPLATE_KEY = os.environ["TEMPLATE_KEY"]
+
 s3 = boto3.client("s3")
 
 MEDIACONVERT_ROLE = os.environ["MEDIACONVERT_ROLE"]
